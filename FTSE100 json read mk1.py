@@ -9,6 +9,7 @@ engine = pyttsx3.init()
 
 engine.setProperty('voice', 'com.apple.speech.synthesis.voice.Victoria')
 
+final = ''
 
 url = "https://spreadsheets.google.com/feeds/list/0AhySzEddwIC1dEtpWF9hQUhCWURZNEViUmpUeVgwdGc/1/public/basic?alt=json"
 with urllib.request.urlopen(url) as url:
@@ -22,9 +23,9 @@ with urllib.request.urlopen(url) as url:
             Value = entry[I]
             content= Value['content']
             Split = content['$t'].replace( ',', ',\n')
-            final = ''
-            final = final + Split
-            print(Split,'\r')
+            final = final + '\n' + Split
+            #print(Split,'\r')
+      print(final)
       tts=gTTS(final)
       tts.save('ftse100.mp3')
 '''engine.say(Split,'\r')
